@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main-nav{
+    background:#00695c;
+    color:#fff;
+}
+main {
+    display: flex;
+}
+#sidebar {
+    background: #004d40;
+    color: white;
+    transition: all 0.3s;
+    width: auto;
+    padding: 10px;
+}
+
+#sidebar ul{
+    padding: 20px;
+}
+
+#sidebar ul li{
+    margin-bottom: 25px;
+}
+#sidebar .nav-link {
+    color: white;
+}
+#sidebar .nav-link:hover {
+    background: #495057;
+}
+#content {
+    width: 100%;
+    padding: 20px;
+}
+#sidebarCollapse {
+    display: none;
+}
+
+img{
+    width: 100%;
+}
+
+.dashboard-wrapper .col-6{
+    width: 49%;
+}
+
+.article-content{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.for-edit-text{
+    background: yellow;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-right: 5px;
+    color:#000;
+}
+
+.published-text{
+    background: green;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color:#fff;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.view-details{
+    color:rgb(59 130 246 / 1);
+}
+
+.card-title{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.article-title{
+    font-size:18px;
+    font-weight:bold;
+    color:rgb(59 130 246 / 1);
+}
+
+.article-label{
+    font-size:20px;
+    font-weight:bold;
+
+}
+
+.article-show-wrapper label{
+    font-weight:bold;
+    font-size:18px;
+}
+
+.article-title-table{
+    font-weight:bold;
+    color:rgb(59 130 246 / 1);
+}
+
+.for-desktop{
+    display: table;
+}
+
+.for-mobile{
+    display: none;
+}
+
+.nav-mobile a{
+    color: #fff !important;
+}
+
+@media(max-width:1300px){
+    .view-details{
+        font-size: 11px;
+    }
+}
+
+@media(min-width:769px) and (max-width:1070px){
+    .dashboard-wrapper .col-3{
+        width: 100%;
+    }
+    .view-details{
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    .article-title{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 860px) {
+    .for-desktop{
+        display: none;
+    }
+    
+    .for-mobile{
+        display: table;
+        font-size: 10px;
+    }
+    .article-label{
+        font-size: 15px;
+    }
+
+    .create-btn{
+        font-size: 10px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    #sidebar {
+        min-width: 0;
+        max-width: 0;
+    }
+    #sidebar.active {
+        min-width: 250px;
+        max-width: 250px;
+    }
+    #sidebarCollapse {
+        display: block;
+    }
+}
