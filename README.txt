@@ -48,10 +48,13 @@ To get started with this project, follow these steps:
 ### API Integration
  - use Postman or any API platform
  - use POST method to login by using this link: http://localhost:8000/api/login
- - it should display the token for accessing the API links
+   - for credetials, you should select form-data in Body tab
+   - it should display the token for accessing the API links
+
  - you should select Bearer Token for Auth Type
- - paste the token you copied after logging in
- - the format should be like this: Authorization: Bearer <token>
+   - paste the token you copied after logging in
+   - the format should be like this: Authorization: Bearer <token>
+   
  - **API Link Sample**: articles, companies, users
    - Get All Articles: /api/articles (GET)
    - Save Article: /api/articles/store (POST)
