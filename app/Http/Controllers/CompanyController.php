@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Services\CompanyService;
 
 class CompanyController extends Controller
 {
+    private $companyService;
+
+    public function __construct(CompanyService $companyService)
+    {
+        $this->companyService = $companyService;
+    }
+
     public function index()
     {
-        $companies = Company::orderBy('id','desc')->get();
+        $companies = $this->companyService->getAllCompanies();
         return view('companies.index', compact('companies'));
     }
 
@@ -20,14 +28,7 @@ class CompanyController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'logo' => 'required',
-            'name' => 'required',
-            'status' => 'required',
-        ]);
-
-        Company::create($request->all());
-
+        $this->companyService->storeCompany($request);
         return redirect()->route('companies.index')->with('success', 'Company created successfully.');
     }
 
@@ -38,15 +39,7 @@ class CompanyController extends Controller
 
     public function update(Request $request, Company $company)
     {
-        $request->validate([
-            'logo' => 'required',
-            'name' => 'required',
-            'status' => 'required',
-        ]);
-
-        $company->update($request->all());
-
+        $this->companyService->updateCompany($request, $company);
         return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
     }
 }
-

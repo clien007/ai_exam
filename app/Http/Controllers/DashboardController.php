@@ -3,40 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Company;
-use App\Models\Article;
-use App\Models\User;
+use App\Services\DashboardService;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    private $dashboardService;
 
-        $user = Auth::user();
+    public function __construct(DashboardService $dashboardService)
+    {
+        $this->dashboardService = $dashboardService;
+    }
 
-        if ($user->type === 'Editor') {
-            $redirect = 'editor.dashboard';
-        }elseif($user->type === 'Writer'){
-            $redirect = 'writer.dashboard';
-        }else{
+    public function index()
+    {
+        $redirect = $this->dashboardService->getDashboardRedirect();
+
+        if ($redirect === null) {
             return abort(404);
         }
 
         return redirect()->route($redirect);
     }
 
-    
     public function writerDashboard()
     {
-        $articlesForEdit = auth()->user()->writtenArticles()->where('status', 'For Edit')->orderBy('id','desc')->get();
-        $articlesPublished = auth()->user()->writtenArticles()->where('status', 'Published')->orderBy('id','desc')->get();
-        return view('writers.dashboard', compact('articlesForEdit', 'articlesPublished'));
+        $user = Auth::user();
+        $data = $this->dashboardService->getWriterDashboardData($user);
+        return view('writers.dashboard', $data);
     }
 
     public function editorDashboard()
     {
-        $articlesForEdit = Article::where('status', 'For Edit')->orderBy('id','desc')->get();
-        $articlesPublished = Article::where('status', 'Published')->orderBy('id','desc')->get();
-        return view('editors.dashboard', compact('articlesForEdit', 'articlesPublished'));
+        $data = $this->dashboardService->getEditorDashboardData();
+        return view('editors.dashboard', $data);
     }
 }

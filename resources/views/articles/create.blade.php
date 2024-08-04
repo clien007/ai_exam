@@ -138,13 +138,6 @@ function validateForm(event) {
         isValid = false;
     }
 
-    // Validate Content
-    const content = document.getElementById('article_content').value;
-    if (content.trim() === '') {
-        document.getElementById('contentError').innerText = 'Content is required.';
-        isValid = false;
-    }
-
     if(isValid){
         document.getElementById("article-form").submit();
     }

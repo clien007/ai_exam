@@ -15,6 +15,7 @@ main {
     transition: all 0.3s;
     width: auto;
     padding: 10px;
+    height: 95vh;
 }
 
 #sidebar ul{

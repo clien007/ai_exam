@@ -35,14 +35,6 @@
                             <i class="fa fa-pencil-square" aria-hidden="true"></i>
                                 Edit
                             </a></a>
-                        <form action="{{ route('companies.destroy', $company->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            Delete
-                        </button>
-                        </form>
                     </td>
                 </tr>
             @endforeach
